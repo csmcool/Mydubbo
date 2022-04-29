@@ -1,0 +1,30 @@
+nacos:
+  server-addr: 39.105.93.97:8848
+  namespace: nacos
+  username: nacos
+  password: nacos
+  data-id: application.yml
+  group: DEFAULT_GROUP
+  timeout: 3000
+  interval: 5000
+spring:
+  application:
+    name: dubbo-provider
+server:
+  port: 8888
+
+serializer:
+  algorithm: Json
+dubbo:
+  application:
+    name: dubbo-provider
+  registry:
+    address: nacos://
+  provider:
+    scan-package: xyz.coolcsm.mydubbo.service
+  consumer:
+    scan-package: xyz.coolcsm.mydubbo.controller
+  cloud:
+    subscribed-services: dubbo-provider
+logging:
+  level: debug
